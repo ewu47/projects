@@ -1,2 +1,4 @@
 # projects
-projects that I have made for fun
+Hi everyone!
+
+Here are some fun projects that I have made
