@@ -15,7 +15,7 @@ OPERATIONS_LIST = ["+", "-"]
 # Screen setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("The Equation Race")
-home_screen = pygame.transform.scale(pygame.image.load("landscape.jpg"), 
+home_screen = pygame.transform.scale(pygame.image.load("assets/landscape.jpg"), 
                                      (WIDTH, HEIGHT))
 
 
@@ -81,8 +81,9 @@ def spawn_blocks(blocks, blocks_text, block_add_increment, total,
 
             if all(abs
             (block_x - block.x) > BLOCK_WIDTH + 5 for block in blocks):
+                #blocks cannot be next to each other
                 break  
-        block = pygame.Rect(block_x, -BLOCK_HEIGHT + 80, 
+        block = pygame.Rect(block_x, -BLOCK_HEIGHT + 90, 
                             BLOCK_WIDTH, BLOCK_HEIGHT)
         if i == correct_block_index:
             block_text = str(total)
@@ -181,14 +182,14 @@ def main():
     blocks = []
     blocks_text = []
     
-    heart = pygame.image.load("heart.png")
+    heart = pygame.image.load("assets/heart.png")
     heart_scaled = pygame.transform.scale(heart, (100, 50))
     heart_list = [heart_scaled for _ in range(3)]
     hit = False
 
     #music
     pygame.mixer.init()
-    music = pygame.mixer.Sound("game song.wav")
+    music = pygame.mixer.Sound("assets/game song.wav")
     music_channel = pygame.mixer.Channel(0)  # Use channel 0 for background music
     music_channel.play(music, loops=-1)
     music_channel.set_volume(0.25)    
@@ -218,7 +219,7 @@ def main():
                                      player, total)
         
         if hit and correct:
-            correct_sound = pygame.mixer.Sound("hit_correct.mp3")
+            correct_sound = pygame.mixer.Sound("assets/hit_correct.mp3")
             sfx_channel = pygame.mixer.Channel(2)
             sfx_channel.play(correct_sound)
             sfx_channel.set_volume(1.0)
@@ -233,7 +234,7 @@ def main():
         elif hit and not correct:
             #sound effect plays
             if len(heart_list) > 1:
-                incorrect_sound = pygame.mixer.Sound("incorrect.mp3")
+                incorrect_sound = pygame.mixer.Sound("assets/incorrect.mp3")
                 inc_channel = pygame.mixer.Channel(1)
                 inc_channel.play(incorrect_sound)
                 inc_channel.set_volume(1.0)
@@ -246,7 +247,7 @@ def main():
             pygame.time.delay(200)  
         
         if len(heart_list) == 0:
-            lost_lives = pygame.mixer.Sound("lost_sound.mp3")
+            lost_lives = pygame.mixer.Sound("assets/lost_sound.mp3")
             lost_channel = pygame.mixer.Channel(3)
             lost_channel.play(lost_lives)
             lost_channel.set_volume(1.0)
@@ -256,7 +257,7 @@ def main():
             return
         
         if elapsed_time >= 60:
-            finished_sound = pygame.mixer.Sound("finished_sound.mp3")
+            finished_sound = pygame.mixer.Sound("assets/finished_sound.mp3")
             finished_channel = pygame.mixer.Channel(4)
             finished_channel.play(finished_sound)
             finished_channel.set_volume(1.0)
