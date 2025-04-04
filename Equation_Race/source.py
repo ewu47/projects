@@ -147,8 +147,8 @@ def restart_quit():
                     exit()
 def new_equation():
     """Generates new equation."""
-    rand_num1 = random.randint(0, 100)
-    rand_num2 = random.randint(0, 100)
+    rand_num1 = random.randint(0, 10)
+    rand_num2 = random.randint(0, 10)
     rand_operation = random.randint(0,1)
     operation = OPERATIONS_LIST[rand_operation]
     if operation == "+":
